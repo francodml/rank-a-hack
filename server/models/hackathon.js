@@ -1,9 +1,9 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema } from "mongoose";
 
 export const HackathonParticipantSchema = new Schema({
     userId: Schema.Types.ObjectId,
     developmentId: Schema.Types.ObjectId,
-    ranking: Number
+    ranking: { type: Number, default: 0 },
 });
 
 export const HackathonSchema = new Schema({
