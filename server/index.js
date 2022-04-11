@@ -8,11 +8,12 @@ import hackathonRoutes from './apiroutes/hackathons.js';
 
 const app = express();
 
-app.use( '/hackathons', hackathonRoutes );
 
+app.use( cors() );
 app.use( bodyParser.json({limit: "30mb", extended: true}) );
 app.use( bodyParser.urlencoded({limit: "30mb", extended: true}) );
-app.use( cors() );
+
+app.use( '/hackathons', hackathonRoutes );
 
 const PORT = process.env.PORT || 3001
 const DB_USER = process.env.DB_USER;
