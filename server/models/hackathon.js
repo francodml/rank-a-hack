@@ -11,6 +11,7 @@ const HackathonSchema = new Schema({
     name: String,
     description: String,
     location: String,
+    id: {type: Number, default: 0, unique: true, dropups: true},
     participants: [HackathonParticipantSchema],
     startDate: { type: Date, default: Date.now },
 });
