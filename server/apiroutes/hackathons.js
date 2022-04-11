@@ -3,36 +3,51 @@ import Hackathon from "../models/hackathon.js";
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    Hackathon.find()
-        .then(hackathons => {
-            res.send(hackathons);
-        })
-        .catch(err => {
-            res.status(500).send(err);
-        });
+router.get('/', async (req, res) => {
+    try {
+        const hackathons = await Hackathon.find();
+        res.send(hackathons);
+    }
+    catch (err) {
+        res.status(500).send(err);
+    }
 });
 
-router.get('/:id', (req, res) => {
-    res.send(`Specific hackathon @${req.params.id}`);
-}); 
+router.get('/:id', async (req, res) => {
+    try {
+        const hackathon = await Hackathon.findOne({ id: req.params.id }).exec();
+        res.send(hackathon);
+    }
+    catch(err) {
+        res.status(500).send(err);
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    const hackathon = await Hackathon.findOne({ id: req.params.id }).exec();
+    hackathon.overwrite(req.body);
+    await hackathon.save();
+});
 
 router.get('/:id/users', (req, res) => {
     res.send(`Specific hackathon participants @${req.params.id}`);
 });
 
-router.post('/', (req, res) => {
-    console.log(req);
-    res.status(501).send("Not implemented");
-    /*body = req.body;
+router.post('/', async (req, res) => {
+    const body = req.body;
+    const count = await Hackathon.estimatedDocumentCount();
     const hackathon = new Hackathon(body);
-    hackathon.save()
-        .then(() => {
-            res.status(201).end();
-        })
-        .catch((err) => {
-            res.status(500).send(err);
-        });*/
+    hackathon.id = count;
+
+    try {
+        const s = await hackathon.save();
+        if (s === hackathon) {
+            res.status(201).send("Created");
+        }
+    }
+    catch(err) {
+        res.status(500).send(err);
+    }
 });
 
 export default router;
