@@ -29,8 +29,14 @@ router.put('/:id', async (req, res) => {
     await hackathon.save();
 });
 
-router.get('/:id/users', (req, res) => {
-    res.send(`Specific hackathon participants @${req.params.id}`);
+router.get('/:id/entries', async (req, res) => {
+    try {
+        const hackathon = await Hackathon.findOne({ id: req.params.id }).exec();
+        res.send(hackathon.entries);
+    }
+    catch(err) {
+        res.status(500).send(err);
+    }
 });
 
 router.post('/', async (req, res) => {

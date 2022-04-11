@@ -3,11 +3,11 @@
 const http = require('http');
 
 const data = JSON.stringify({
-    name: '2009 GDC Hackathon',
-    description: 'A hackathon that happened during 2009 at GDC',
-    location: 'GDC',
+    name: '2077 NYC UWU Hackathon',
+    description: 'Organized by the UWU group, this hackathon is a chance for students to learn and grow as developers. We are looking for developers to join our team and help us build a better future for the UWU community.',
+    location: 'Remote',
     participants: [],
-    startDate: new Date(2009, 1, 1),
+    startDate: new Date(2077, 4, 1),
 });
 
 const options = {
