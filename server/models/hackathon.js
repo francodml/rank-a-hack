@@ -1,15 +1,22 @@
-import { Schema } from "mongoose";
+import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
-export const HackathonParticipantSchema = new Schema({
+const HackathonParticipantSchema = new Schema({
     userId: Schema.Types.ObjectId,
     developmentId: Schema.Types.ObjectId,
     ranking: { type: Number, default: 0 },
 });
 
-export const HackathonSchema = new Schema({
+const HackathonSchema = new Schema({
     name: String,
     description: String,
     location: String,
     participants: [HackathonParticipantSchema],
     startDate: { type: Date, default: Date.now },
 });
+
+const Hackathon = mongoose.model('Hackathon', HackathonSchema);
+
+export const HackathonParticipant = mongoose.model('HackathonParticipant', HackathonParticipantSchema);
+
+export default Hackathon;

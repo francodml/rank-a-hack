@@ -1,9 +1,13 @@
-import { Schema } from "mongoose";
+import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
-export const UserSchema = new Schema({
-    username: String,
+const UserSchema = new Schema({
+    username: {type: String, unique:true, dropups:true},
     firstName: String,
     lastName: String,
     location: String,
     hackathons: [Schema.Types.ObjectId],
 });
+
+const User = mongoose.model('User', UserSchema);
+export default User;
