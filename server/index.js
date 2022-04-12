@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
 import hackathonRoutes from './apiroutes/hackathons.js';
+import userRoutes from './apiroutes/users.js';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use( bodyParser.json({limit: "30mb", extended: true}) );
 app.use( bodyParser.urlencoded({limit: "30mb", extended: true}) );
 
 app.use( '/hackathons', hackathonRoutes );
+app.use( '/users', userRoutes );
 
 const PORT = process.env.PORT || 3001
 const DB_USER = process.env.DB_USER;
