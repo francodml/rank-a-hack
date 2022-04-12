@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 export const DevelopmentSchema = new Schema({
     name: String,
     description: String,
-    developerId: Schema.Types.ObjectId,
+    developerId: { type: Number, default: 0, ref: 'User' },
     ranking: { type: Number, default: 0 }
 });
 
