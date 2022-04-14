@@ -1,0 +1,32 @@
+.Header {
+    display: flex;
+    flex-direction: row;
+    min-height: 7vh;
+    max-height: calc(10px + 7vh);
+    width: 100%;
+    justify-content: left;
+    align-items: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+    background-color: #303030;
+}
+
+.Header > * {
+    padding: 0px 10px 0px 10px
+}
+
+.Header-Logo {
+    height: 7vmin;
+    padding: 0px;
+}
+
+.VerticalSplit {
+    border-left: 2px solid #212121;
+    height: 6vh;
+    margin: 0px 10px 0px 10px;
+}
+
+a.Header-Title {
+    color: white;
+    font-size: calc(10px + 2vmin);
+    text-decoration: none;
+}
