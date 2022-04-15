@@ -1,11 +1,12 @@
 import logo from '../logo.svg';
-import './navbar.css';
+import { Link } from 'react-router-dom';
+import './styles/navbar.css';
 
 export default function Navbar(){
     return (
         <div className='Header'>
             <img src={logo} className="Header-Logo" alt="logo" />
-            <a href='/' className="Header-Title">Rank-a-Hack</a>
+            <Link to="/" className="Header-Title">Rank-a-Hack</Link>
             <div className='VerticalSplit'></div>
         </div>
     );
