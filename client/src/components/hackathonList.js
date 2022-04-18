@@ -1,6 +1,6 @@
 import './styles/hackathonList.scss';
 import Hackathon from './hackathon';
-import { useGetHackathonsQuery } from '../redux/api';
+import { useGetHackathonsQuery } from '../redux/mainAPI';
 
 export default function HackathonList() {
 
