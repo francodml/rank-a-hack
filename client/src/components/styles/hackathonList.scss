@@ -11,24 +11,33 @@
 }
 
 .Hackathon {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
     text-align: left;
     padding: 35px;
     margin: calc(10px + 1vmax);
-    background-color: globals.$highlight;
+    background-color: globals.$detail;
+    transition: all 0.2s ease-in-out;
+    border-radius: 5vmin;
+
+    &:hover {
+        background-color: globals.$highlight;
+        box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.6);
+    }
 
     .Hackathon__title {
-        font-size: 1.5em;
+        font-size: 1.2em;
         font-weight: bold;
         margin-bottom: 5px;
         margin-top: 20px;
     }
 
     .Hackathon__description {
-        font-size: 1em;
+        font-size: 0.8em;
         margin-bottom: 20px;
     }
 
     .Hackathon__date {
+        font-size: 0.8em;
         margin-top: 0px;
     }
 }
