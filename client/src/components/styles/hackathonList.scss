@@ -1,0 +1,34 @@
+@use './globals.scss' as globals;
+
+.List {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+}
+
+.Hackathon {
+    text-align: left;
+    padding: 35px;
+    margin: calc(10px + 1vmax);
+    background-color: globals.$highlight;
+
+    .Hackathon__title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 5px;
+        margin-top: 20px;
+    }
+
+    .Hackathon__description {
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+
+    .Hackathon__date {
+        margin-top: 0px;
+    }
+}
