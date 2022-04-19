@@ -1,3 +1,33 @@
 $highlight: #303030;
 $background: #212121;
 $detail: #2b2b2b;
+
+.title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.description {
+    font-size: 0.6em;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 0.8em;
+    margin-top: 0px;
+}
+
+.entries{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    .entry {
+        .title {
+           font-size: 0.8em; 
+        }
+        padding: 10px;
+    }
+}

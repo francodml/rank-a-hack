@@ -1,6 +1,8 @@
 import './styles/hackathonList.scss';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useGetUserQuery } from '../redux/mainAPI';
+import UserDetail from './userdetail';
 
 export default function Hackathon({ hackathon }) {
 
@@ -10,9 +12,14 @@ export default function Hackathon({ hackathon }) {
 
     var entries = [...hackathon.entries];
     entries.sort((a, b) => { return b.ranking - a.ranking });
-    console.log(entries);
 
     const topEntries = entries.slice(0, 3);
+
+    const topDevs = []
+
+    topEntries.forEach(e => { 
+        topDevs.push()
+    });
 
     return (
         <div className="Hackathon" onClick={ event => { event.preventDefault(); nav(`/details/${hackathon.id}`)}}>
@@ -23,9 +30,10 @@ export default function Hackathon({ hackathon }) {
             <div className='entries'>
                 {topEntries.map(entry => {
                     return (
-                        <div className='entry'>
+                        <div className='entry' key={entry._id}>
                             <p className='title'>{entry.name}</p>
                             <p className='subtitle'>{entry.ranking.toFixed(1)}</p>
+                            <UserDetail user={entry.developerId} />
                         </div>
                     )
                 })}

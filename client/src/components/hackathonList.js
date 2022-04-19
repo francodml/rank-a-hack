@@ -8,7 +8,7 @@ export default function HackathonList() {
 
     return (
         <div className="List">
-            { error ? <p>Error: {error.message}</p> :
+            { error ? <p>Error: {error.status}</p> :
             loading? <p>Loading...</p> :
             data? <>{
                 data.map(hackathon => {
