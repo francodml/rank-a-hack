@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useGetHackathonQuery } from "../redux/mainAPI";
 import Developers from "../components/developers";
+import DevelopmentRanking from '../components/developmentranking';
 
 export default function Details() {
     let urlParams = useParams();
@@ -27,8 +28,9 @@ export default function Details() {
                 <p className="description">
                     {data.description}
                 </p>
-                <div className="entries">
-                    <Developers hackathonId={data.id} />
+                <div className="entriesList">
+                    {/* <Developers hackathonId={data.id} /> */}
+                    <DevelopmentRanking hackathon={data} />
                 </div>
             </div>
          : null
