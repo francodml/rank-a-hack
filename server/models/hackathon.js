@@ -11,6 +11,17 @@ const HackathonSchema = new Schema({
     startDate: { type: Date, default: Date.now },
 });
 
+HackathonSchema.methods.getDevelopers = async function(callback) {
+    const devIds = [];
+    var entries = [...this.entries];
+    entries.sort((a, b) => a.ranking - b.ranking);
+    entries.forEach(entry => {
+        devIds.push(entry.developerId);
+    });
+    const devs = await mongoose.model('User').find({userId: {$in: devIds}});
+    return devs;
+}
+
 const Hackathon = mongoose.model('Hackathon', HackathonSchema);
 
 export default Hackathon;

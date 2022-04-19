@@ -24,9 +24,14 @@ router.post('/', async (req, res) => {
         ids.push(users[i].userId);
     }
     User.insertMany(users)
-        .then(() => {
+        .then((docs) => {
             res.status(201);
-            res.json(ids);
+            const oids = [];
+            docs.forEach(doc => {
+                oids.push(doc._id);
+            });
+
+            res.json(oids);
         })
         .catch(err => {
             console.log(err);

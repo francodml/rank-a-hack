@@ -14,11 +14,14 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+    console.log(`GET /hackathons/${req.params.id}`);
     try {
         const hackathon = await Hackathon.findOne({ id: req.params.id }).exec();
+        hackathon.populate('entries.developerId');
         res.send(hackathon);
     }
     catch(err) {
+        console.log(err);
         res.status(500).send(err);
     }
 });
@@ -33,6 +36,19 @@ router.get('/:id/entries', async (req, res) => {
     try {
         const hackathon = await Hackathon.findOne({ id: req.params.id }).exec();
         res.send(hackathon.entries);
+    }
+    catch(err) {
+        res.status(500).send(err);
+    }
+});
+
+router.get('/:id/devs', async (req, res) => {
+    try {
+        const hackathon = await Hackathon.findOne({ id: req.params.id }).exec();
+        
+        const devs = await hackathon.getDevelopers();
+        console.log(devs);
+        res.send(devs);
     }
     catch(err) {
         res.status(500).send(err);

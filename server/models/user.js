@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     firstName: String,
     lastName: String,
     location: String,
-    hackathons: { type: Schema.Types.ObjectId, ref: 'Hackathon' },
+    // hackathons: { type: Schema.Types.ObjectId, ref: 'Hackathon' },
     avatarUrl: String,
     email: String,
 });
