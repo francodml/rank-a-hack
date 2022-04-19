@@ -1,6 +1,5 @@
 //developers list component
 import UserDetail from "./userdetail";
-import './styles/developers.scss'
 import { useGetDevelopersFromHackathonQuery } from "../redux/mainAPI";
 
 export default function Developers({ hackathonId }) {
