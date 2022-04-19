@@ -2,7 +2,7 @@
 
 .userCard {
     @include globals.rounded-box;
-
+    width: fit-content;
     .name {
         font-size: 1.2em;
         font-weight: bold;

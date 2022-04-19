@@ -1,4 +1,4 @@
-import './styles/developers.scss'
+import './styles/userdetail.scss'
 
 export default function UserDetail({ user, compact }) {
 
