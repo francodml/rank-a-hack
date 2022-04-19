@@ -19,6 +19,12 @@
     padding: 0px;
 }
 
+.Header-NavButton {
+    color: white;
+    font-size: calc(10px + 2vmin);
+    text-decoration: none;
+}
+
 .VerticalSplit {
     border-left: 2px solid #212121;
     height: 6vh;
