@@ -5,10 +5,11 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const hackathons = await Hackathon.find();
+        const hackathons = await Hackathon.find({}).populate('entries.developerId');
         res.send(hackathons);
     }
     catch (err) {
+        console.log(err)
         res.status(500).send(err);
     }
 });
@@ -17,7 +18,7 @@ router.get('/:id', async (req, res) => {
     console.log(`GET /hackathons/${req.params.id}`);
     try {
         const hackathon = await Hackathon.findOne({ id: req.params.id }).exec();
-        hackathon.populate('entries.developerId');
+        await hackathon.populate('entries.developerId');
         res.send(hackathon);
     }
     catch(err) {
@@ -35,6 +36,7 @@ router.put('/:id', async (req, res) => {
 router.get('/:id/entries', async (req, res) => {
     try {
         const hackathon = await Hackathon.findOne({ id: req.params.id }).exec();
+        await hackathon.populate('entries.developerId');
         res.send(hackathon.entries);
     }
     catch(err) {
@@ -45,10 +47,8 @@ router.get('/:id/entries', async (req, res) => {
 router.get('/:id/devs', async (req, res) => {
     try {
         const hackathon = await Hackathon.findOne({ id: req.params.id }).exec();
-        
-        const devs = await hackathon.getDevelopers();
-        console.log(devs);
-        res.send(devs);
+        await hackathon.populate('entries.developerId');
+        res.send(hackathon.developers);
     }
     catch(err) {
         res.status(500).send(err);
