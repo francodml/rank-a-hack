@@ -33,7 +33,7 @@ export default function Hackathon({ hackathon }) {
                         <div className='entry' key={entry._id}>
                             <p className='title'>{entry.name}</p>
                             <p className='subtitle'>{entry.ranking.toFixed(1)}</p>
-                            <UserDetail user={entry.developerId} />
+                            <UserDetail user={entry.developerId} compact />
                         </div>
                     )
                 })}
