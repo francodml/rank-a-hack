@@ -2,7 +2,9 @@
 
 .userCard {
     @include globals.rounded-box;
-    // @include globals.highlight($shadow-size: 10px);
+    @include globals.highlight($shadow-blur: 10px);
+    background-color: globals.$highlight;
+
     width: fit-content;
     .name {
         font-size: 1.2em;
@@ -14,16 +16,16 @@
             font-size: 0.8em;
         }
         .profilePic {
-            width: 60px;
-            height: 60px;
+            width: min(60px, 10vmin);
+            height: auto;
         }
 
         padding: 3.5px 10px 3.5px 10px;
     }
 
     .profilePic {
-        width: 100px;
-        height: 100px;
+        width: min(100px, 10vmin);
+        height: auto;
         border-radius: 50%;
         margin-right: 10px;
     }
