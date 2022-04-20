@@ -2,7 +2,6 @@
 
 .Development {
     @include globals.rounded-box;
-    @include globals.highlight;
     border-radius: 5vmin;
     flex-direction: column;
     justify-content: flex-start;
@@ -14,7 +13,6 @@
         font-weight: bold;
     }
     .Subtitle {
-        //make it stick to the element above
         position:relative;
         top: -1.5em;
         font-size: 0.8em;
