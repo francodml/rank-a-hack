@@ -32,11 +32,16 @@ $detail: #2b2b2b;
     }
 }
 
-@mixin rounded-box {
+
+@mixin highlight($color: #ffffff99, $shadow-blur: 20px) {
     &:hover{
         background-color: $highlight;
-        box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 0px $shadow-blur $color;
     }
+    transition: background-color 0.2s ease-in-out, box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@mixin rounded-box ( $shadow-color: #00000066, $shadow-blur: 5px ) {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -44,8 +49,8 @@ $detail: #2b2b2b;
     margin: 1vw;
     padding: 10px 25px 10px 25px;
     background-color: $detail;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px $shadow-blur $shadow-color;
     border-radius: 100px;
-    transition: background-color 0.2s ease-in-out, box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    
     cursor:default;
 }
