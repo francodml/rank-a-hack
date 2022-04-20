@@ -1,8 +1,9 @@
-import './styles/hackathonList.scss';
+import styles from './styles/hackathon.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useGetUserQuery } from '../redux/mainAPI';
 import UserDetail from './userdetail';
+import Development from './development';
 
 export default function Hackathon({ hackathon }) {
 
@@ -22,19 +23,15 @@ export default function Hackathon({ hackathon }) {
     });
 
     return (
-        <div className="Hackathon" onClick={ event => { event.preventDefault(); nav(`/details/${hackathon.id}`)}}>
-            <p className='title'>{hackathon.name}</p>
-            <p className='subtitle'>{formattedDate}</p>
-            <p className='description'>{hackathon.description}</p>
-            <h1 className='subtitle'>Top entries</h1>
-            <div className='entries'>
+        <div className={styles.Hackathon} onClick={ event => { event.preventDefault(); nav(`/details/${hackathon.id}`)}}>
+            <p className={styles.title}>{hackathon.name}</p>
+            <p className={styles.subtitle}>{formattedDate} - {hackathon.location}</p>
+            <p className={styles.description}>{hackathon.description}</p>
+            <h1 className={styles.subtitle}>Top entries</h1>
+            <div className={styles.entries}>
                 {topEntries.map(entry => {
                     return (
-                        <div className='entry' key={entry._id}>
-                            <p className='title'>{entry.name}</p>
-                            <p className='subtitle'>ranked {entry.ranking.toFixed(1)}/10.0</p>
-                            <UserDetail user={entry.developerId} compact />
-                        </div>
+                        <Development key={entry._id} entry={entry} compact />
                     )
                 })}
             </div>
