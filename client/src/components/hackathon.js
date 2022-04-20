@@ -1,8 +1,5 @@
 import styles from './styles/hackathon.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useGetUserQuery } from '../redux/mainAPI';
-import UserDetail from './userdetail';
 import Development from './development';
 
 export default function Hackathon({ hackathon }) {
@@ -10,6 +7,12 @@ export default function Hackathon({ hackathon }) {
     const formattedDate = new Date(hackathon.startDate).toLocaleDateString("es-AR");
 
     let nav = useNavigate();
+
+    const navigateToDetails = ( event ) => {
+        event.preventDefault();
+        nav(`/details/${hackathon.id}`);
+        window.scrollTo(0,0);
+    }
 
     var entries = [...hackathon.entries];
     entries.sort((a, b) => { return b.ranking - a.ranking });
@@ -23,7 +26,7 @@ export default function Hackathon({ hackathon }) {
     });
 
     return (
-        <div className={styles.Hackathon} onClick={ event => { event.preventDefault(); nav(`/details/${hackathon.id}`)}}>
+        <div className={styles.Hackathon} onClick={navigateToDetails}>
             <p className={styles.title}>{hackathon.name}</p>
             <p className={styles.subtitle}>{formattedDate} - {hackathon.location}</p>
             <p className={styles.description}>{hackathon.description}</p>
