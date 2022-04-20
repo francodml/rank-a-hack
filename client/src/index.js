@@ -5,8 +5,8 @@ import './index.css';
 
 /* pages and top level app layout */
 import App from './App';
-import Details from './pages/details';
-import Index from './pages/index';
+import Details from './components/pages/details';
+import Index from './components/pages/index';
 /* end pages and top level app layout */
 
 /* redux and redux toolkit */
