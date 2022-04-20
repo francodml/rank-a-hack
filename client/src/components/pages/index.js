@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import HackathonList from '../components/hackathonList.js';
+import HackathonList from '../hackathonList.js';
 
 export default function Index () {
     return (
