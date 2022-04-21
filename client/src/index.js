@@ -5,7 +5,6 @@ import './index.css';
 
 /* top level app layout */
 import App from './App';
-/* end pages and top level app layout */
 
 /* redux and redux toolkit */
 import { store } from './redux/store';
