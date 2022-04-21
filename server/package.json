@@ -4,7 +4,9 @@
   "description": "hackathon-ranker server",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "cd ../client && npm run build",
+    "build-start": "npm run build && npm start"
   },
   "type": "module",
   "author": "francodml",
