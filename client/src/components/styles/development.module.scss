@@ -1,22 +1,32 @@
 @use './globals.scss' as globals;
 
+
+@media screen and (max-width: 768px) {
+    .Development {
+        width: 100% !important;
+    }
+}
+
 .Development {
     @include globals.rounded-box;
+
     border-radius: 5vmin;
     flex-direction: column;
     justify-content: flex-start;
-    flex-basis: 1;
-    flex-grow: 1;
+    align-content: center;
+    text-align: center;
     width: 20vw;
     .Title {
         font-size: 1.2em;
+        width: 100%;
         font-weight: bold;
     }
     .Subtitle {
+        font-size: 0.8em;
         position:relative;
         top: -1.5em;
-        font-size: 0.8em;
         margin-top: 0.5em;
+        height: 100%;
     }
 
     .Description {
@@ -24,6 +34,6 @@
     }
     
     .UserDetail {
-        justify-self: flex-end;
+        justify-self: end;
     }
 }
