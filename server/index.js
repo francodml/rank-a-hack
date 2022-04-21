@@ -19,6 +19,12 @@ app.use( cors() );
 app.use( bodyParser.json({limit: "30mb", extended: true}) );
 app.use( bodyParser.urlencoded({limit: "30mb", extended: true}) );
 
+app.post( '*' , ( req, res, next ) => {
+    let origin = req.headers.origin;
+
+    next();
+});
+
 app.use( '/api/hackathons', hackathonRoutes );
 app.use( '/api/users', userRoutes );
 
@@ -33,8 +39,9 @@ const PORT = process.env.PORT || 3001
 const DB_USER = process.env.DB_USER;
 const DB_PASS = process.env.DB_PASS;
 const DB_NAME = process.env.DB_NAME;
+const DB_URL = process.env.DB_URL
 
-const CONNECTION_URL = `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.vql6v.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
+const CONNECTION_URL = process.env.DB_CONNECTION || `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_URL}/${DB_NAME}?retryWrites=true&w=majority`
 
 mongoose.connect( CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true } )
     .then(() => {
