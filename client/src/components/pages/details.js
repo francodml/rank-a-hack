@@ -19,17 +19,22 @@ export default function Details() {
         )
     }
 
-    return (
-        data ? 
-            <div className={styles.Details}>
-                <p className={styles.title}>{data.name}</p>
-                <p className={styles.description}>
-                    {data.description}
-                </p>
-                <div className={styles.entriesList}>
-                    <DevelopmentRanking hackathon={data} />
+    if (data)
+    {    const formattedDate = new Date(data.startDate).toLocaleDateString("es-AR");
+
+        return (
+            data ? 
+                <div className={styles.Details}>
+                    <p className={styles.title}>{data.name}</p>
+                    <p className={styles.subtitle}>{formattedDate} - {data.location}</p>
+                    <p className={styles.description}>
+                        {data.description}
+                    </p>
+                    <div className={styles.entriesList}>
+                        <DevelopmentRanking hackathon={data} />
+                    </div>
                 </div>
-            </div>
-         : null
-    );
+            : null
+        );
+    }
 }
