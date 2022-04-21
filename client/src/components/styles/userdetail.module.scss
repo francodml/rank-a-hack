@@ -2,7 +2,6 @@
 
 .userCard {
     @include globals.rounded-box;
-    @include globals.highlight($shadow-blur: 10px);
     background-color: globals.$highlight;
 
     width: fit-content;
