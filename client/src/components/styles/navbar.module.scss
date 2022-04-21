@@ -1,4 +1,9 @@
-.Header {
+@use './globals.scss' as globals;
+
+//if screen is landscape
+
+
+.Navbar {
     display: flex;
     flex-direction: row;
     min-height: 7vh;
@@ -8,31 +13,39 @@
     align-items: center;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
     background-color: #303030;
+
+    .Logo {
+        height: 7vmin;
+        padding: 0px;
+    }
+
+    
+    .Title {
+        color: white;
+        font-size: calc(10px + 2vmin);
+        text-decoration: none;
+    }
+
+    
+    > * {
+        padding: 0px 10px 0px 10px
+    }
+
 }
 
-.Header > * {
-    padding: 0px 10px 0px 10px
-}
-
-.Header-Logo {
-    height: 7vmin;
-    padding: 0px;
-}
-
-.Header-NavButton {
+.NavButton {
     color: white;
+    background: globals.$detail;
+    height: 100%;
+    min-height: unset;
     font-size: calc(10px + 2vmin);
     text-decoration: none;
 }
+
 
 .VerticalSplit {
     border-left: 2px solid #212121;
     height: 6vh;
     margin: 0px 10px 0px 10px;
-}
-
-a.Header-Title {
-    color: white;
-    font-size: calc(10px + 2vmin);
-    text-decoration: none;
+    padding: 0px;
 }
