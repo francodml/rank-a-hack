@@ -1,0 +1,19 @@
+@use './globals.scss' as globals;
+
+.DeveloperRanking {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: fit-content;
+    background: linear-gradient(to right, #00000000 5%, globals.$detail 1%);
+    margin: 10px 0 10px 0;
+
+    .subtitle{
+        margin: 10px 20px 10px 10px;
+    }
+
+    .UserDetail > * {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+}
