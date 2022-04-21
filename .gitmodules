@@ -1,0 +1,3 @@
+[submodule "server/rank-a-hack-datagen"]
+	path = server/rank-a-hack-datagen
+	url = https://github.com/francodml/rank-a-hack-datagen
