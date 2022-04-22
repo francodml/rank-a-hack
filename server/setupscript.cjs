@@ -50,7 +50,7 @@ datagenSetup();
 
 function DatabaseSetup()
 {
-    rl.question('Database Connection Type\n(1)Individual Parameters (2)Connection String', (choice) => {
+    rl.question('Database Connection Type\n(1)Individual Parameters (2)Connection String: ', (choice) => {
         if (choice == 1) {
             rl.question('Database User: ', (user) => {
                 rl.question('Database Password: ', (pass) => {
@@ -78,10 +78,10 @@ function DatabaseSetup()
 }
 
 function cronJobSetup() {
-    console.log("Unfortuantely, the cron job setup isn't working yet. Please manually add the following to your crontab:");
+    console.log("Unfortuantely, the cron job setup isn't working yet. Please manually add the following to your crontab:\n");
     console.log(`*/5 * * * * node ${__dirname}/rank-a-hack-datagen/main.js`);
-    console.log('This runs the data generator every five minutes, and inserts a new hackathon with 10 users and 1 project per user.');
-    console.log('In the future, this will be automated by reading your existing crontab, and appending our entry to it.')
+    console.log('\nThis runs the data generator every five minutes, and inserts a new hackathon with 10 users and 1 project per user.');
+    console.log('In the future, this setup will be automated.')
     // var existingCron = '';
     // try
     // {   
@@ -114,8 +114,9 @@ function datagenSetup() {
     console.log('Setting up data generator');
     try {
         if (!fs.existsSync(path.join(__dirname,'rank-a-hack-datagen', 'node_modules'))){
-            console.log('Data generator not found, cloning now');
+            console.log('Data generator not found, updating submodules');
             exec('git submdoule update --init --recursive', (error, stdout, stderr) => {
+                console.log('Installing datagen deps');
                 exec('npm install', {cwd: path.join(__dirname,'rank-a-hack-datagen')});
             });
         }
