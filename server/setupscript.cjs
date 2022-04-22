@@ -45,6 +45,8 @@ if (!dbsetupRequired){
 
 
 DatabaseSetup();
+cronJobSetup();
+datagenSetup();
 
 function DatabaseSetup()
 {
@@ -55,7 +57,7 @@ function DatabaseSetup()
                     rl.question('Database Name: ', (name) => {
                         rl.question('Database URL: ', (url) => {
                             fs.writeFileSync('.env', `DB_USER=${user}\nDB_PASS=${pass}\nDB_NAME=${name}\nDB_URL=${url}`);
-                            cronJobSetup();
+                            rl.close();
                         });
                     });
                 });
@@ -64,7 +66,7 @@ function DatabaseSetup()
         else if (choice == 2) {
             rl.question('Database Connection String: ', (connectionString) => {
                 fs.writeFileSync('.env', `DB_CONNECTION=${connectionString}`);
-                cronJobSetup();
+                rl.close();
             });
         }
         else {
@@ -76,7 +78,6 @@ function DatabaseSetup()
 }
 
 function cronJobSetup() {
-    rl.close();
     console.log("Unfortuantely, the cron job setup isn't working yet. Please manually add the following to your crontab:");
     console.log(`*/5 * * * * node ${__dirname}/rank-a-hack-datagen/main.js`);
     console.log('This runs the data generator every five minutes, and inserts a new hackathon with 10 users and 1 project per user.');
@@ -107,4 +108,19 @@ function cronJobSetup() {
     // catch(e) {
     //     console.log(e);
     // }
+}
+
+function datagenSetup() {
+    console.log('Setting up data generator');
+    try {
+        if (!fs.existsSync(path.join(__dirname,'rank-a-hack-datagen', 'node_modules'))){
+            console.log('Data generator not found, cloning now');
+            exec('git submdoule update --init --recursive', (error, stdout, stderr) => {
+                exec('npm install', {cwd: path.join(__dirname,'rank-a-hack-datagen')});
+            });
+        }
+    }
+    catch (e) {
+        console.log(e);
+    }
 }
