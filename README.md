@@ -12,16 +12,11 @@ Test data is generated via [rank-a-hack-datagen](https://github.com/francodml/ra
     
     `cd rank-a-hack/server`
 
-3. Add a .env file with DB_CONNECTION as a MongoDB connection string
+3. Run `npm run first-run` to execute the setup script.
 
-    ```
-    DB_CONNECTION='<YOUR MONGODB CONNECTION STRING>'
-    ```
-    Read below for environment variables.
+    The setup script will guide you through setting up your connection string to MongoDB, install deps on client and server, and perform an initial client build.
 
-4. Run `npm run build-start`
-
-    This will automatically perform a first build and start the server.
+4. Run `npm run start` to begin serving the built React app and the API.
 
 ## Env variables
 This project uses a few environment variables to provide database connection details, as well as the desired listen port. For convenience's sake, I've used `dotenv` to load these from a file, so you can do that too.
