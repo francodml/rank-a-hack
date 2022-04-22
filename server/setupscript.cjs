@@ -23,26 +23,9 @@ catch (e) {
     console.log(e);
 }
 
-try {
-    if (!fs.existsSync(path.join(__dirname,'../client/build'))){
-        console.log('Client build not found, building now');
-        exec('npm run build', (error, stdout, stderr) => {
-            if (error) {
-                console.error(`build error: ${error}`);
-                return;
-            }
-            console.log(`stdout: ${stdout}`);
-            console.log(`stderr: ${stderr}`);
-        });
-    }
-} catch (error) {
-    console.log(error);
-}
-
 if (!dbsetupRequired){
     exit();
 }
-
 
 DatabaseSetup();
 
@@ -55,7 +38,7 @@ function DatabaseSetup()
                     rl.question('Database Name: ', (name) => {
                         rl.question('Database URL: ', (url) => {
                             fs.writeFileSync('.env', `DB_USER=${user}\nDB_PASS=${pass}\nDB_NAME=${name}\nDB_URL=${url}`);
-                            cronJobSetup();
+                            postDBSetup();
                         });
                     });
                 });
@@ -64,7 +47,7 @@ function DatabaseSetup()
         else if (choice == 2) {
             rl.question('Database Connection String: ', (connectionString) => {
                 fs.writeFileSync('.env', `DB_CONNECTION=${connectionString}`);
-                cronJobSetup();
+                postDBSetup();
             });
         }
         else {
@@ -75,7 +58,25 @@ function DatabaseSetup()
     });
 }
 
-function cronJobSetup() {
+function postDBSetup() {
+
+    try {
+        if (!fs.existsSync(path.join(__dirname,'../client/build'))){
+            console.log('Client build not found, building now');
+            exec('npm run build', (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`build error: ${error}`);
+                    return;
+                }
+                console.log(`stdout: ${stdout}`);
+                console.log(`stderr: ${stderr}`);
+            });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+    
+
     console.log("Unfortuantely, the cron job setup isn't working yet. Please manually add the following to your crontab:\n");
     console.log(`*/5 * * * * node ${__dirname}/rank-a-hack-datagen/main.js`);
     console.log('\nThis runs the data generator every five minutes, and inserts a new hackathon with 10 users and 1 project per user.');
