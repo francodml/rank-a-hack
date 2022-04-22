@@ -58,31 +58,34 @@ function DatabaseSetup()
 
 function cronJobSetup() {
     rl.close();
-    console.log("The 5 minute periodic cron job will be set up now.");
-    var existingCron = '';
-    try
-    {   
-        var e = exec('crontab -l', (error, stdout, stdin) => {
-            console.log(stdout);
-            console.log(stdin);
-            if (error) throw (error);
-            if ( stdout.includes('no crontab for') ){
-                existingCron = stdout;
-            }
-        });
-        console.log(e.stdout);
-    }
-    catch (e) {
-        console.log(e);
-    }
-    var mycron = `*/5 * * * * node ${__dirname}/rank-a-hack-datagen/main.js`
-    mycron = existingCron+mycron;
-    try {    
-        fs.writeFile(path.join(__dirname,'mycron'), mycron, () =>{
-            console.log('Wrote crontab to locally');
-        })
-    }
-    catch(e) {
-        console.log(e);
-    }
+    console.log("Unfortuantely, the cron job setup isn't working yet. Please manually add the following to your crontab:");
+    console.log(`*/5 * * * * node ${__dirname}/rank-a-hack-datagen/main.js`);
+    console.log('This runs the data generator every five minutes, and inserts a new hackathon with 10 users and 1 project per user.');
+    console.log('In the future, this will be automated by reading your existing crontab, and appending our entry to it.')
+    // var existingCron = '';
+    // try
+    // {   
+    //     var e = exec('crontab -l', (error, stdout, stdin) => {
+    //         console.log(stdout);
+    //         console.log(stdin);
+    //         if (error) throw (error);
+    //         if ( stdout.includes('no crontab for') ){
+    //             existingCron = stdout;
+    //         }
+    //     });
+    //     console.log(e.stdout);
+    // }
+    // catch (e) {
+    //     console.log(e);
+    // }
+    // var mycron = `*/5 * * * * node ${__dirname}/rank-a-hack-datagen/main.js`
+    // mycron = existingCron+mycron;
+    // try {    
+    //     fs.writeFile(path.join(__dirname,'mycron'), mycron, () =>{
+    //         console.log('Wrote crontab to locally');
+    //     })
+    // }
+    // catch(e) {
+    //     console.log(e);
+    // }
 }
