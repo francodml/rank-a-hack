@@ -45,8 +45,6 @@ if (!dbsetupRequired){
 
 
 DatabaseSetup();
-cronJobSetup();
-datagenSetup();
 
 function DatabaseSetup()
 {
@@ -57,7 +55,7 @@ function DatabaseSetup()
                     rl.question('Database Name: ', (name) => {
                         rl.question('Database URL: ', (url) => {
                             fs.writeFileSync('.env', `DB_USER=${user}\nDB_PASS=${pass}\nDB_NAME=${name}\nDB_URL=${url}`);
-                            rl.close();
+                            cronJobSetup();
                         });
                     });
                 });
@@ -66,7 +64,7 @@ function DatabaseSetup()
         else if (choice == 2) {
             rl.question('Database Connection String: ', (connectionString) => {
                 fs.writeFileSync('.env', `DB_CONNECTION=${connectionString}`);
-                rl.close();
+                cronJobSetup();
             });
         }
         else {
@@ -108,6 +106,7 @@ function cronJobSetup() {
     // catch(e) {
     //     console.log(e);
     // }
+    datagenSetup();
 }
 
 function datagenSetup() {
