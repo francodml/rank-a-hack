@@ -6,7 +6,8 @@ Test data is generated via [rank-a-hack-datagen](https://github.com/francodml/ra
 ## Running this project
 1. Clone the repository locally
     
-    `git clone https://github.com/francodml/rank-a-hack.git`
+    `git clone --recurse-submodules https://github.com/francodml/rank-a-hack.git`
+    Make sure to include submodules, as the mock data generator is included as such under `/server/`
     
 2. Head into the `rank-a-hack/server` directory
     
