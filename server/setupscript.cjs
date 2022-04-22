@@ -9,22 +9,41 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-var setupRequired = true;
+var dbsetupRequired = true;
+console.log('PSh Dev Challenge - Hackathon Ranking');
+console.log('Initial setup script')
 
 try {
     if (fs.existsSync('.env')) {
-        setupRequired = false;
+        dbsetupRequired = false;
+        console.log('.env exists, skipping database setup');
     }
 }
 catch (e) {
     console.log(e);
 }
 
-if (!setupRequired){
+try {
+    if (!fs.existsSync(path.join(__dirname,'../client/build'))){
+        console.log('Client build not found, building now');
+        exec('npm run build', (error, stdout, stderr) => {
+            if (error) {
+                console.error(`build error: ${error}`);
+                return;
+            }
+            console.log(`stdout: ${stdout}`);
+            console.log(`stderr: ${stderr}`);
+        });
+    }
+} catch (error) {
+    console.log(error);
+}
+
+if (!dbsetupRequired){
     exit();
 }
-console.log('PSh Dev Challenge - Hackathon Ranking');
-console.log('Initial setup script')
+
+
 DatabaseSetup();
 
 function DatabaseSetup()
